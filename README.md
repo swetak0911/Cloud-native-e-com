@@ -3,8 +3,6 @@
 **MERN/PERN + System Design + DevOps/SRE Capstone**
 
 A production-style e-commerce platform built as event-driven microservices.
-This repo is your interview-grade portfolio project: it demonstrates both
-**implementation skill** and **system design maturity** (Google / Amazon / Meta style).
 
 ---
 
