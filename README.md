@@ -59,30 +59,7 @@ A production-style e-commerce platform built as event-driven microservices.
 | notification-service | Email/SMS/order updates via async events        | —          |
 | search-service       | Product search                                  | Elastic    |
 
-## Build order (don't build everything at once)
 
-1. Frontend + API Gateway
-2. Auth Service
-3. Product Service
-4. Cart Service
-5. Order Service
-6. Inventory Service
-7. Payment Service
-8. Notification Service
-9. Search Service
-10. Monitoring + Kubernetes + CI/CD
-
-## Getting started (local dev)
-
-```bash
-# 1. boot infrastructure (Postgres, Mongo, Redis, Kafka)
-docker compose up -d
-
-# 2. run a single service
-cd services/auth-service
-npm install
-npm run dev
-```
 
 ## Docs
 
