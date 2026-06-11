@@ -1,7 +1,14 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import cors from 'cors';
+import { webcrypto } from 'node:crypto';
+
+if (!globalThis.crypto) {
+  (globalThis as any).crypto = webcrypto;
+}
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 // Order Schema
@@ -23,7 +30,7 @@ const orderSchema = new mongoose.Schema({
 const Order = mongoose.model('Order', orderSchema);
 
 // MongoDB Connect
-mongoose.connect('mongodb://localhost:27017/orderdb')
+mongoose.connect('mongodb://mongo:27017/orderdb')
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err));
 

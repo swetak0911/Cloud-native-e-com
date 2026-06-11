@@ -1,11 +1,21 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import cors from 'cors';  
+import { webcrypto } from 'node:crypto';
+
+// Global crypto object set karein taaki MongoDB driver ise use kar sake
+if (!(global as any).crypto) {
+  (global as any).crypto = webcrypto;
+}
 
 const app = express();
+app.use(cors()); 
 app.use(express.json());
 
-// MongoDB connect
-mongoose.connect('mongodb://localhost:27017/productdb')
+// MongoDB connect — env variable se, fallback localhost
+const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/productdb';
+
+mongoose.connect(MONGO_URL)
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log('DB Error:', err));
 

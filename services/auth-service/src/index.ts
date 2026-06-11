@@ -3,8 +3,11 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { z } from "zod";
 import client from "prom-client";
+import crypto from "crypto";
+import cors from "cors";
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 // ---- Observability: Prometheus metrics (RED method) ----

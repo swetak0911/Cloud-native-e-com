@@ -57,7 +57,7 @@ services:
     ports: ["4001:4001"]
     depends_on: [mongo]
     environment:
-      MONGO_URL: mongodb://mongo:27017/product
+      MONGO_URL: mongodb://mongo:27017/productdb
       PORT: 4001
 
   cart-service:
@@ -65,7 +65,7 @@ services:
     ports: ["4002:4002"]
     depends_on: [mongo]
     environment:
-      MONGO_URL: mongodb://mongo:27017/cart
+      MONGO_URL: mongodb://mongo:27017/cartdb
       PORT: 4002
 
   order-service:
@@ -73,9 +73,15 @@ services:
     ports: ["4003:4003"]
     depends_on: [mongo]
     environment:
-      MONGO_URL: mongodb://mongo:27017/order
+      MONGO_URL: mongodb://mongo:27017/orderdb
       PORT: 4003
-
+  
+  api-gateway:
+    build: ./services/api-gateway
+    ports: ["8080:8080"]
+    depends_on: [auth-service, product-service, cart-service, order-service]
+    environment:
+      PORT: 8080
 
 volumes:
   pgdata:
